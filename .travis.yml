@@ -14,4 +14,5 @@ before_install:
   - 'sudo docker pull ${image}:${tag}'
 
 script:
-  - docker run --privileged -v $(pwd):/root/python-keylime -it lukehinds/keylime-ci:v02 /bin/sh -c 'cd /root/python-keylime/test; chmod +x ./run_tests.sh; ./run_tests.sh -s openssl'
+  #- docker run --privileged -v $(pwd):/root/python-keylime -it lukehinds/keylime-ci:v02 /bin/sh -c 'cd /root/python-keylime/test; chmod +x ./run_tests.sh; ./run_tests.sh -s openssl'
+    - "docker run --privileged -v $(pwd):/root/python-keylime -it ${image}:${tag} /bin/sh -c 'cd /root/python-keylime/test; chmod +x ./run_tests.sh; ./run_tests.sh -s openssl'"
